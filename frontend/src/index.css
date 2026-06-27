@@ -1,0 +1,347 @@
+/* =====================================================================
+   ReWheel design tokens
+   Direction: a late-night garage workshop — graphite surfaces, hazard
+   amber for primary action, a cool teal for "available/good" states.
+   Numbers (price, km, year) are set in monospace, like an odometer.
+   ===================================================================== */
+:root {
+  --color-bg: #15171a;
+  --color-surface: #1f2226;
+  --color-surface-alt: #2a2e33;
+  --color-border: #33373d;
+  --color-text: #f1efea;
+  --color-text-muted: #9ca3af;
+  --color-accent: #ff7a1a;
+  --color-accent-dark: #d4630f;
+  --color-accent-2: #2dd4bf;
+  --color-danger: #ef4444;
+
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'Roboto Mono', 'Courier New', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------------------------------------------------------------- Navbar */
+.navbar {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-mark {
+  width: 10px;
+  height: 22px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transform: skewX(-12deg);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+}
+.nav-links a, .nav-links button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  padding: 6px 0;
+}
+.nav-links a:hover, .nav-links button:hover { color: var(--color-text); }
+.nav-links a.active { color: var(--color-accent); }
+
+/* ---------------------------------------------------------------- Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 11px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--color-accent); color: #1a0e04; }
+.btn-primary:hover { background: var(--color-accent-dark); }
+.btn-secondary { background: var(--color-surface-alt); color: var(--color-text); border: 1px solid var(--color-border); }
+.btn-secondary:hover { border-color: var(--color-text-muted); }
+.btn-danger { background: var(--color-danger); color: #fff; }
+.btn-block { width: 100%; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------------------------------------------------------------- Forms */
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--color-accent);
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  max-width: 480px;
+  margin: 48px auto;
+}
+.form-card.wide { max-width: 720px; }
+.form-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid var(--color-danger);
+  color: #ffb4b4;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.form-success {
+  background: rgba(45, 212, 191, 0.12);
+  border: 1px solid var(--color-accent-2);
+  color: var(--color-accent-2);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* ---------------------------------------------------------------- Cards / grid */
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+.vehicle-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease;
+}
+.vehicle-card:hover { border-color: var(--color-accent); }
+.vehicle-card-photo {
+  width: 100%;
+  height: 150px;
+  background: var(--color-surface-alt);
+  object-fit: cover;
+  display: block;
+}
+.vehicle-card-body { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.vehicle-card-title { font-size: 15px; font-weight: 600; }
+.vehicle-card-price {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+}
+.vehicle-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Signature element: a license-plate style badge for year / fuel / km */
+.plate-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  color: var(--color-text-muted);
+  background: var(--color-surface-alt);
+  text-transform: uppercase;
+}
+.plate-badge.status-available { color: var(--color-accent-2); border-color: var(--color-accent-2); }
+.plate-badge.status-sold { color: var(--color-danger); border-color: var(--color-danger); }
+
+/* ---------------------------------------------------------------- Detail page */
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  margin-top: 24px;
+  align-items: start;
+}
+.detail-photo-main {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-alt);
+  height: 360px;
+  object-fit: cover;
+}
+.detail-thumb-row { display: flex; gap: 8px; margin-top: 10px; }
+.detail-thumb {
+  width: 64px; height: 48px; object-fit: cover;
+  border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--color-border);
+}
+.detail-thumb.active { border-color: var(--color-accent); }
+.detail-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.detail-price {
+  font-family: var(--font-mono);
+  font-size: 30px;
+  color: var(--color-accent);
+}
+.spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0; }
+.spec-item { font-size: 13px; }
+.spec-item .label { color: var(--color-text-muted); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+.spec-item .value { font-family: var(--font-mono); font-size: 14px; }
+
+/* ---------------------------------------------------------------- Tables / lists */
+.list-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.list-table th, .list-table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+}
+.list-table th { color: var(--color-text-muted); font-weight: 500; text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; }
+.contact-cell { font-family: var(--font-mono); font-size: 13px; }
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-muted);
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.filter-bar input, .filter-bar select {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--font-mono);
+}
+.status-pill.pending { background: rgba(255, 122, 26, 0.15); color: var(--color-accent); }
+.status-pill.accepted { background: rgba(45, 212, 191, 0.15); color: var(--color-accent-2); }
+.status-pill.rejected { background: rgba(239, 68, 68, 0.15); color: var(--color-danger); }
+.status-pill.completed { background: rgba(45, 212, 191, 0.15); color: var(--color-accent-2); }
+
+footer {
+  margin-top: auto;
+  padding: 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 720px) {
+  .detail-layout { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+}
