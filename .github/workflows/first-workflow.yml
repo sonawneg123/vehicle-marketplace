@@ -25,3 +25,7 @@ jobs:
 
       - name: Print Current Date
         run: date
+      - name: print 
+        uses: actions/checkout@v3
+          
+        
