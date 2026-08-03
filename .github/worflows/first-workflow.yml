@@ -1,0 +1,12 @@
+name: My First GitHub Action
+
+on:
+  push:
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Welcome Message
+        run: echo "Hello Gaurav! Welcome to GitHub Actions."
