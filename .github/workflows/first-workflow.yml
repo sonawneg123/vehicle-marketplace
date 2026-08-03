@@ -1,31 +1,20 @@
-name: My First GitHub Action
+name: Node Version Demo
 
 on:
   push:
 
 jobs:
-  first-job:
+  demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print Welcome Message
-        run: echo "Hello Gaurav! Welcome to GitHub Actions."
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Print Current Directory
-        run: pwd
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-      - name: List Files
-        run: ls -la
-
-      - name: Show Current User
-        run: whoami
-
-      - name: Show Operating System
-        run: uname -a
-
-      - name: Print Current Date
-        run: date
-      - name: print 
-        uses: actions/checkout@v3
-          
-        
+      - name: Check Node Version
+        run: node -v
