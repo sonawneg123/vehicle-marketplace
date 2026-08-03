@@ -10,3 +10,18 @@ jobs:
     steps:
       - name: Print Welcome Message
         run: echo "Hello Gaurav! Welcome to GitHub Actions."
+
+      - name: Print Current Directory
+        run: pwd
+
+      - name: List Files
+        run: ls -la
+
+      - name: Show Current User
+        run: whoami
+
+      - name: Show Operating System
+        run: uname -a
+
+      - name: Print Current Date
+        run: date
